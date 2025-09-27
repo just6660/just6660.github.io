@@ -1,0 +1,107 @@
+---
+// Component for the Publications section
+const publications = [
+  {
+    title:
+      "Studying the effect of AI code generators on supporting novice learners in introductory programming",
+    authors:
+      'Majeed Kazemitabaar, <strong class="highlight-author">Justin Chow</strong>, Carl Ka To Ma, Barbara J Ericson, David Weintrop, Tovi Grossman',
+    venue:
+      "Proceedings of the 2023 CHI conference on human factors in computing systems",
+    year: "2023",
+    link: "https://dl.acm.org/doi/full/10.1145/3544548.3580919",
+    citedBy: "358",
+  },
+];
+---
+
+<div class="publications-content">
+  <!-- Section title now handled by parent -->
+  <div class="publication-list">
+    {
+      publications.map((pub) => (
+        <div class="publication-item">
+          <div class="publication-main">
+            <h3>
+              <a href={pub.link} target="_blank" rel="noopener noreferrer">
+                {pub.title}
+              </a>
+            </h3>
+            <p class="authors" set:html={pub.authors} />
+            <p class="venue">
+              {pub.venue} {pub.year && <span class="year">({pub.year})</span>}
+            </p>
+            <p class="venue">Citations: {pub.citedBy ? pub.citedBy : "N/A"}</p>
+          </div>
+          {/* Citation info div removed */}
+        </div>
+      ))
+    }
+  </div>
+</div>
+
+<style>
+  .publication-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem; /* Spacing between items */
+  }
+
+  .publication-item {
+    display: flex; /* Enable flex for main content and citation info */
+    justify-content: space-between; /* Push citation to the right */
+    align-items: flex-start; /* Align items to the top */
+    padding: 0.75rem 0; /* Vertical padding, no horizontal padding here */
+    border-bottom: 1px solid var(--gray-light); /* Separator line */
+  }
+  .publication-item:last-of-type {
+    border-bottom: none;
+  }
+
+  .publication-main {
+    flex-grow: 1;
+    padding-right: 1rem; /* Space before citation count */
+  }
+
+  .publication-item h3 {
+    margin-top: 0;
+    margin-bottom: 0.2rem;
+    font-size: 1rem;
+    font-weight: 600;
+  }
+  .publication-item h3 a {
+    color: var(--text-color);
+    text-decoration: none;
+  }
+  .publication-item h3 a:hover {
+    text-decoration: underline;
+  }
+
+  .publication-item .authors {
+    margin-bottom: 0.2rem;
+    font-size: 0.85rem;
+    color: var(--gray-dark);
+    line-height: 1.4;
+  }
+
+  .publication-item .venue {
+    font-size: 0.85rem;
+    color: var(--gray-dark);
+    line-height: 1.4;
+  }
+  .publication-item .year {
+    /* font-style: italic; */
+  }
+
+  .highlight-author {
+    font-weight: 600; /* Or bold, depending on desired emphasis */
+    color: var(--text-color); /* Make highlighted name stand out a bit more */
+  }
+
+  .equal-contribution-note {
+    font-size: 0.8rem;
+    color: var(--gray-dark);
+    margin-top: 1rem;
+    text-align: left;
+  }
+</style>

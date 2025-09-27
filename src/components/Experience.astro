@@ -1,0 +1,248 @@
+---
+// Build absolute asset URLs using Astro's BASE_URL (works in dev + Pages)
+const getImageUrl = (imageName) => {
+  const base = import.meta.env.BASE_URL || "/";
+  return base.endsWith("/") ? `${base}${imageName}` : `${base}/${imageName}`;
+};
+const experiences = [
+  {
+    logoPlaceholder: `<img src='${getImageUrl("compneurolab.png")}' alt='Computational Neuroscience Lab Logo' style='width:100%; height:100%; object-fit:contain;'>`,
+    company: "Computational Neuroscience Lab (UofT)",
+    role: "AI Research Intern",
+    dates: "September 2025 - Present",
+    description:
+      "Supervised by: Professor Brokoslaw Laschowski\n\nWorking on inverse reinforcement learning for neuroscience",
+  },
+  {
+    logoPlaceholder: `<img src='${getImageUrl("stonex.png")}' alt='StoneX Logo' style='width:100%; height:100%; object-fit:contain;'>`,
+    company: "StoneX Group",
+    role: "Software Engineer Intern",
+    dates: "May 2024 - Present",
+    description:
+      "Tools and algorithms for securities and equities market making on the Quantitative Trading Solutions team." +
+      "\n\n" +
+      "Developed a low latency market data feed for OTC market data using Java. Aggregated quotes to create a multi level quote book and published data to internal apps using Kafka and Streambase." +
+      "\n\n" +
+      "Engineered a fault-tolerant, low-latency FIX gateway (Java, Aeron, Chronicle). Leader election and automatic failover across bare metal machines using Zookeeper." +
+      "\n\n" +
+      "Developed a Python reconciliation service for FIX orders/executions reports. Detected breaks, emailed alerts and archived artifacts to Azure Blob Storage and SQL Server.. " +
+      "\n\n" +
+      "Shipped middle office APIs in C#/ASP.NET. Authored high-volume SQL procs/queries and optimized with indexes/parallelism for multi-million-row workloads." +
+      "\n\n" +
+      "Delivered a live fills/executions pipeline. Produced data to Kafka,  bridged to Lightstreamer, developed Angular/TypeScript UI with real-time filters (symbol, client).	" +
+      "\n\n" +
+      "Handled CI/CD using Azure Pipelines to Kubernetes environments configured using Kustomize and managed containers and images using Docker." +
+      "\n\n" +
+      "Languages and Technologies: Python, Java, C#, C++, HTML/CSS, TypeScript, Angular, ASP.NET, SQL, Microsoft SQL Server Management Studio, Kafka, Docker, Kubernetes, Git, Azure DevOps, Wrangler, Splunk Cloud",
+  },
+  {
+    logoPlaceholder: `<img src='${getImageUrl("blinq.png")}' alt='BLiNQ Logo' style='width:100%; height:100%; object-fit:contain;'>`,
+    company: "BLiNQ Networks",
+    role: "Software Engineer Intern",
+    dates: "May 2023 - September 2023",
+    description:
+      "Worked on the development of NetLiNQ EMS management platform for wireless and broadband networking equipment." +
+      "\n\n" +
+      "Created end-to-end components such as map features to display eNBs and CPEs as well as location search and radius filtering components using Angular, Diesel, ElasticSearch, and Google GeoCoding API." +
+      "\n\n" +
+      "Created a Python script that algorithmically updates ElasticSearch fields through HTTP endpoints. Created a Docker image for the script which is used for a Kubernetes periodic job through GitHub Actions." +
+      "\n\n" +
+      "Created a Go script that takes in a JSON file for bulk uploading devices and validates the user through Keycloak Oauth. The script then validates the file based on a predefined schema. If valid, devices are bulk uploaded to MongoDB." +
+      "\n\n" +
+      "Implemented Agile methodologies and Scrum framework throughout development as well as Jira and Confluence.",
+  },
+  {
+    logoPlaceholder: `<img src='${getImageUrl("uhn.png")}' alt='UHN Logo' style='width:100%; height:100%; object-fit:contain;'>`,
+    company: "University Health Network",
+    role: "Full Stack Developer",
+    dates: "September 2022 - May 2023",
+    description:
+      "Full Stack Developer for the Kidney Health Education and Research Group (KHERG) in the Multi-Organ Transplant Program and Centre for Mental Health at the University Health Network (UHN) and University of Toronto." +
+      "\n\n" +
+      "Worked on the development of several websites including Kidney Health Education and Research Group, Explore Transplant Ontario, and Symptom Care using React, JavaScript, HTML/CSS, PHP, and WordPress.",
+  },
+  {
+    logoPlaceholder: `<img
+        src="${getImageUrl("dgp.png")}"
+        alt="DGP Lab Logo"
+        style="max-width:100%; max-height:100%; object-fit:contain; object-position:center; display:block;"
+      />`,
+    company: "DGP Lab (UofT)",
+    role: "AI Research Intern",
+    dates: "May 2022 - September 2022",
+    description:
+      "Undergraduate research assistant under Professor Tovi Grossman with a focus on Human Computer Interaction." +
+      "\n\n" +
+      "Worked on the development of Blocks-To-Code, an educational IDE which serves as an intermediary transition from block-based to text-based programming using TypeScript, Monaco Editor, and React." +
+      "\n\n" +
+      "Developed multiple features including a spotlight search where users can input various blocks of code by using an autocomplete feature. Developed a settings menu to toggle features such as colored blocks and typing in the editor." +
+      "\n\n" +
+      "Also worked on the research study of Coding Steps. A study showcasing the effects of AI generators on novice programmers. Second author of the corresponding paper which was accepted into the prestigious CHI 2023 conference.",
+  },
+];
+---
+
+<section id="experience" class="experience-section">
+  <div class="section-box">
+    <h2 class="section-title">Experience</h2>
+    <div class="experience-list">
+      {
+        experiences.map((exp, index) => (
+          <details class="experience-item">
+            {" "}
+            {/* Vector and DGP items open by default */}
+            <summary>
+              <div class="summary-header">
+                <div class="logo-placeholder" set:html={exp.logoPlaceholder} />
+                <div class="title-block">
+                  <span class="company-role-line">
+                    <span class="company">{exp.company}</span>
+                    <span class="role">{exp.role}</span>
+                    <span class="dates">({exp.dates})</span>
+                  </span>
+                </div>
+              </div>
+              <span class="arrow" />
+            </summary>
+            <div class="description">
+              <p class="description-text">{exp.description}</p>
+            </div>
+          </details>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .experience-section {
+    padding: 1.5rem 0;
+    border-bottom: 1px solid var(--gray-light);
+  }
+
+  .experience-section:last-child {
+    border-bottom: none;
+  }
+
+  .section-box {
+    border-radius: 20px;
+    padding: 2rem;
+    border: 1px solid rgb(171, 112, 223);
+    box-shadow: 0 1px 3px rgb(171, 112, 223);
+  }
+
+  /* h2 is now styled globally by .section-title */
+  /* Removed local h2 style */
+
+  .experience-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem; /* Tighter gap for a more connected list */
+  }
+  .experience-item {
+    border: none; /* Remove border from item */
+    border-radius: 0; /* Remove border-radius from item */
+    background-color: var(--background);
+  }
+  .experience-item summary {
+    padding: 0.6rem 0; /* Slightly reduced padding */
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Push arrow to the right */
+    cursor: pointer;
+    list-style: none;
+    border-bottom: 1px solid var(--gray-light); /* Border like Jae Park */
+  }
+  .experience-item:last-of-type summary {
+    /* border-bottom: none; Optional: remove border for last item summary if desired */
+  }
+  .experience-item summary::-webkit-details-marker {
+    display: none;
+  }
+  .summary-header {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem; /* Adjusted gap */
+  }
+  .logo-placeholder {
+    font-size: 1rem; /* Smaller logo/icon */
+    width: 28px;
+    height: 28px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--gray-light);
+    border-radius: 4px;
+    flex-shrink: 0;
+    color: var(--text-color);
+  }
+  .title-block {
+    display: flex;
+    align-items: baseline;
+  }
+  .company-role-line {
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+  .company {
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--text-color);
+  }
+  .role {
+    font-size: 0.9rem;
+    color: var(--gray-dark);
+  }
+  .dates {
+    font-size: 0.85rem;
+    color: var(--gray-dark);
+  }
+  .arrow {
+    width: 9px; /* Smaller arrow */
+    height: 9px;
+    border-right: 1.5px solid var(--gray-dark);
+    border-bottom: 1.5px solid var(--gray-dark);
+    transform: rotate(45deg);
+    transition: transform 0.2s ease-in-out;
+    margin-left: 0.75rem;
+  }
+  details[open] > summary .arrow {
+    transform: rotate(-135deg);
+  }
+  .description {
+    padding: 0.6rem 0 0.8rem 0;
+    margin-top: 0.4rem;
+    font-size: 0.9rem; /* Slightly smaller description */
+    color: var(--gray-dark);
+    line-height: 1.55;
+    overflow: hidden; /* Hide content that overflows max-height */
+    max-height: 0; /* Collapsed by default */
+    transition:
+      max-height 0.3s ease-in-out,
+      padding 0.3s ease-in-out,
+      margin 0.3s ease-in-out; /* Smooth transition */
+  }
+
+  details[open] > .description {
+    max-height: 40rem; /* Adjust as needed to fit content, can be a large value */
+    /* Padding and margin are already set, ensure they are part of the transition or set explicitly if needed */
+  }
+
+  .description p {
+    margin: 0;
+  }
+
+  .description-text {
+    white-space: pre-line;
+  }
+
+  /* Mobile responsive styles for section box */
+  @media (max-width: 768px) {
+    .section-box {
+      padding: 1.5rem;
+      border-radius: 16px;
+    }
+  }
+</style>

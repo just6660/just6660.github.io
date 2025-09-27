@@ -1,0 +1,390 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Experience from "../components/Experience.astro";
+import Projects from "../components/Projects.astro";
+import Publications from "../components/Publications.astro";
+import Footer from "../components/Footer.astro";
+
+const personalName = "Justin Chow";
+
+const getImageUrl = (imageName: string) => {
+  const base = import.meta.env.BASE_URL || "/";
+  return base.endsWith("/") ? `${base}${imageName}` : `${base}/${imageName}`;
+};
+
+const profilePicSrc = getImageUrl("profile.jpg");
+const title =
+  "University of Toronto Engineering Science · Software Engineer · ML Researcher";
+---
+
+<Layout>
+  <div class="app-layout">
+    <!-- Left Sidebar -->
+    <aside class="left-sidebar" aria-label="Profile">
+      <section class="profile-section">
+        <figure class="profile-pic-large">
+          <img src={profilePicSrc} alt={personalName} loading="lazy" />
+        </figure>
+
+        <header class="profile-info">
+          <h1>Hi, I’m <span class="highlight">{personalName}</span>.</h1>
+          <p class="title">{title}</p>
+        </header>
+
+        <section class="bio" aria-label="About">
+          <p>
+            <strong>Academic:</strong> University of Toronto Engineering Science
+            (Machine Intelligence) — cGPA 3.60/4.0.
+          </p>
+          <p>
+            <strong>Industry Experience:</strong> Experienced developer in Java,
+            Python, C, TypeScript, Angular, React, SQL. Built low-latency, fault-tolerant
+            systems and shipped an OTC market-data feed (multicast, multi-level book,
+            Kafka/StreamBase) at StoneX for equities market making.
+          </p>
+          <p>
+            <strong>Research Experience:</strong> I’m currently researching inverse
+            reinforcement learning for neuroscience with Prof. Brokoslaw Laschowski.
+            Second author on a CHI’23 paper on how AI code generators affect novice
+            programmers with Prof. Majeed Kazemitabaar and Prof. Tovi Grossman.
+          </p>
+        </section>
+
+        <nav class="social-links" aria-label="Social links">
+          <a
+            href="https://scholar.google.com/citations?user=xldCmkEAAAAJ&hl=en"
+            target="_blank"
+            rel="noopener noreferrer"
+            title="Google Scholar"
+          >
+            <!-- Google Scholar -->
+            <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"
+              ><path
+                d="M5.242 13.769L0 9.5 12 0l12 9.5-5.242 4.269C17.548 11.249 14.978 9.5 12 9.5c-2.977 0-5.548 1.748-6.758 4.269zM12 10a7 7 0 1 0 0 14 7 7 0 0 0 0-14z"
+              ></path></svg
+            >
+            <span>Google Scholar</span>
+          </a>
+
+          <a
+            href="https://github.com/just6660"
+            target="_blank"
+            rel="noopener noreferrer"
+            title="GitHub"
+          >
+            <!-- GitHub -->
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              aria-hidden="true"
+            >
+              <path
+                d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"
+              ></path>
+            </svg>
+            <span>GitHub</span>
+          </a>
+
+          <a
+            href="https://www.linkedin.com/in/justin-chow-114659199/"
+            target="_blank"
+            rel="noopener noreferrer"
+            title="LinkedIn"
+          >
+            <!-- LinkedIn -->
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              aria-hidden="true"
+            >
+              <path
+                d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"
+              ></path>
+              <rect x="2" y="9" width="4" height="12"></rect>
+              <circle cx="4" cy="4" r="2"></circle>
+            </svg>
+            <span>LinkedIn</span>
+          </a>
+        </nav>
+
+        <p class="email-note">
+          Contact:
+          <a href="mailto:just6660@gmail.com" class="inline-link"
+            >just6660@gmail.com</a
+          >
+        </p>
+      </section>
+    </aside>
+
+    <!-- Right Content -->
+    <main class="right-content" id="main-content">
+      <div class="scrollable-content">
+        <Experience />
+        <section
+          id="publications"
+          class="content-section"
+          aria-labelledby="pub-title"
+        >
+          <div class="section-box">
+            <h2 class="section-title" id="pub-title">Publications</h2>
+            <Publications />
+          </div>
+        </section>
+        <Projects />
+      </div>
+    </main>
+  </div>
+  <Footer />
+</Layout>
+
+<style>
+  /* Prevent page scrolling on desktop, allow on mobile */
+  html,
+  body {
+    height: 100%;
+    overflow: hidden;
+  }
+
+  @media (max-width: 768px) {
+    html,
+    body {
+      height: auto;
+      overflow: visible;
+    }
+  }
+
+  .app-layout {
+    display: block;
+    height: 100vh;
+    height: 100svh;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .left-sidebar {
+    position: fixed;
+    top: 2rem;
+    left: 50%;
+    transform: translateX(-600px);
+    width: 400px;
+    height: calc(100svh - 4rem);
+    overflow-y: auto;
+    padding-right: 2rem;
+    z-index: 10;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .left-sidebar::-webkit-scrollbar {
+    width: 3px;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .left-sidebar:hover::-webkit-scrollbar {
+    opacity: 1;
+  }
+  .left-sidebar::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.15);
+    border-radius: 3px;
+  }
+  .left-sidebar::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.3);
+  }
+
+  .profile-section {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  .profile-pic-large {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0 auto;
+    box-shadow: 0 4px 16px rgb(171, 112, 223);
+  }
+  .profile-pic-large img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .profile-info {
+    text-align: left;
+  }
+  .profile-info h1 {
+    font-size: 2rem;
+    font-weight: 400;
+    margin-bottom: 0.5rem;
+    line-height: 1.2;
+    color: var(--text-color);
+  }
+  .highlight {
+    color: rgb(171, 112, 223);
+    font-weight: 600;
+  }
+  .title {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    color: var(--text-color);
+  }
+
+  .bio {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--gray-dark);
+    display: grid;
+    gap: 0.75rem;
+  }
+
+  .social-links {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0.4rem;
+    margin: 0.75rem 0 1.25rem;
+  }
+  .social-links a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    color: var(--text-color);
+    text-decoration: none;
+    font-size: 0.85rem;
+    padding: 0.35rem 0.6rem;
+    border: 1px solid var(--gray-light);
+    border-radius: 5px;
+    transition:
+      transform 0.15s ease,
+      background-color 0.15s ease,
+      border-color 0.15s ease;
+    min-height: 32px;
+    white-space: nowrap;
+  }
+  .social-links a:hover {
+    background-color: var(--gray-light);
+    border-color: var(--gray-dark);
+    transform: translateY(-1px);
+  }
+  .social-links svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .email-note {
+    font-size: 0.85rem;
+    color: var(--gray-dark);
+    margin-bottom: 0.4rem;
+  }
+
+  .inline-link,
+  .intro-link {
+    color: rgb(171, 112, 223);
+    text-decoration: underline;
+  }
+  .inline-link:hover,
+  .intro-link:hover {
+    text-decoration: none;
+  }
+
+  .right-content {
+    margin-left: 440px;
+    height: calc(100svh - 4rem);
+    position: relative;
+  }
+  .scrollable-content {
+    height: 100%;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-right: 1rem;
+  }
+  .scrollable-content::-webkit-scrollbar {
+    width: 0px;
+  }
+  .scrollable-content::-webkit-scrollbar-thumb {
+    background: rgb(171, 112, 223);
+    border-radius: 2px;
+  }
+  .scrollable-content::-webkit-scrollbar-thumb:hover {
+    background: rgb(171, 112, 223);
+  }
+
+  .content-section {
+    padding: 1.5rem 0;
+    border-bottom: 1px solid var(--gray-light);
+  }
+  .content-section:last-child {
+    border-bottom: none;
+  }
+  .section-box {
+    border-radius: 20px;
+    padding: 2rem;
+    border: 1px solid rgb(171, 112, 223);
+    box-shadow: 0 1px 3px rgb(171, 112, 223);
+  }
+
+  @media (max-width: 768px) {
+    .app-layout {
+      display: flex;
+      flex-direction: column;
+      padding: 1rem;
+      gap: 1.5rem;
+      height: auto;
+      min-height: 100vh;
+      overflow: visible;
+      max-width: 100%;
+    }
+    .left-sidebar {
+      position: static;
+      transform: none;
+      left: auto;
+      width: 100%;
+      padding-right: 0;
+      height: auto;
+      overflow-y: visible;
+      margin-bottom: 1rem;
+    }
+    .right-content {
+      margin-left: 0;
+      height: auto;
+      width: 100%;
+    }
+    .profile-pic-large {
+      width: 120px;
+      height: 120px;
+    }
+    .profile-info h1 {
+      font-size: 1.5rem;
+    }
+    .title {
+      font-size: 1.1rem;
+    }
+    .bio {
+      font-size: 0.95rem;
+    }
+    .social-links {
+      grid-template-columns: 1fr;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
+    }
+    .social-links a {
+      justify-content: flex-start;
+      padding: 0.5rem 0.75rem;
+      font-size: 0.95rem;
+    }
+    body {
+      -webkit-overflow-scrolling: touch;
+    }
+  }
+</style>

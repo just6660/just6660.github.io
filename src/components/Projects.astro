@@ -1,0 +1,135 @@
+---
+// Component for the Projects section
+const projects = [];
+---
+
+{
+  projects.length > 0 && (
+    <section id="projects" class="projects-section">
+      <div class="section-box">
+        <h2 class="section-title">Projects</h2>
+        <div class="project-list">
+          {projects.map((project) => (
+            <div class="project-item">
+              <h3>
+                {project.title}
+                <a
+                  href={project.github_url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="github-link"
+                >
+                  [github]
+                </a>
+              </h3>
+              <p set:html={project.description} />
+              <div class="tags">
+                {project.tags.map((tag) => (
+                  <span class="tag">{tag}</span>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+<style>
+  .projects-section {
+    padding: 1.5rem 0;
+    border-bottom: 1px solid var(--gray-light);
+  }
+
+  .projects-section:last-child {
+    border-bottom: none;
+  }
+
+  .section-box {
+    border-radius: 20px;
+    padding: 2rem;
+    border: 1px solid rgb(171, 112, 223);
+    box-shadow: 0 1px 3px rgb(171, 112, 223);
+  }
+
+  /* h2 is now styled globally by .section-title */
+  /* Removed local h2 style */
+
+  .project-list {
+    display: grid;
+    grid-template-columns: 1fr; /* Single column by default */
+    gap: 1.5rem;
+  }
+
+  /* Optional: if you want two columns on wider screens for projects */
+  /* @media (min-width: 768px) {
+    .project-list {
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+    }
+  } */
+
+  .project-item {
+    border: 1px solid var(--gray-light); /* Lighter border */
+    border-radius: 6px; /* Slightly less rounded */
+    padding: 1.25rem; /* Adjusted padding */
+    background-color: var(--background);
+  }
+
+  .project-item h3 {
+    margin-top: 0;
+    margin-bottom: 0.75rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--text-color);
+  }
+
+  .github-link {
+    font-size: 0.75rem;
+    font-weight: 400;
+    color: var(--gray-dark);
+    text-decoration: none;
+    border: 1px solid var(--gray-light);
+    padding: 0.2rem 0.4rem;
+    border-radius: 3px;
+    transition: all 0.2s ease;
+  }
+
+  .github-link:hover {
+    color: var(--text-color);
+    border-color: var(--gray-dark);
+    background-color: var(--gray-light);
+  }
+
+  .project-item p {
+    margin-bottom: 1rem;
+    font-size: 0.9rem; /* Slightly smaller text */
+    line-height: 1.6;
+    color: var(--gray-dark); /* Lighter text for description */
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .tag {
+    background-color: var(--gray-light);
+    color: var(--gray-dark);
+    padding: 0.25rem 0.6rem;
+    border-radius: 4px; /* Less rounded tags */
+    font-size: 0.75rem;
+  }
+
+  /* Mobile responsive styles for section box */
+  @media (max-width: 768px) {
+    .section-box {
+      padding: 1.5rem;
+      border-radius: 16px;
+    }
+  }
+</style>

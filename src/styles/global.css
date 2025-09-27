@@ -1,0 +1,77 @@
+:root {
+  --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  --font-serif: "Georgia", "Times New Roman", serif;
+
+  --black: #111111;
+  /* --blue-accent: #2563eb; /* Removing blue for now */
+  --link-color: #374151; /* Dark Gray for links */
+  --gray-light: #f3f4f6;
+  --gray-medium: #d1d5db;
+  --gray-dark: #4b5563;
+  --background: #ffffff;
+  --text-color: var(--black);
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--background);
+  color: var(--text-color);
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+  font-size: 0.96rem; /* Slightly reduced base font size */
+}
+
+/* Mobile Safari scrolling support */
+html, body { height: 100%; }
+@media (max-width: 768px) {
+  html, body {
+    overflow-y: auto; /* ensure root can scroll */
+    -webkit-overflow-scrolling: touch; /* momentum scroll on iOS */
+  }
+}
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0 0 1rem 0;
+  font-weight: 700;
+}
+
+h2.section-title {
+  font-size: 1.4rem; /* Adjusted section title size */
+  font-weight: 600;
+  color: var(--black);
+  margin-bottom: 1.5rem;
+  /* border-bottom: 1px solid var(--gray-light); /* Optional: if titles need a bottom border */
+}
+
+a {
+  color: var(--link-color); /* Changed to dark gray */
+  text-decoration: none; /* Remove underline by default */
+}
+
+a:hover {
+  text-decoration: none; /* Ensure no underline on hover */
+  /* color: var(--link-color); Optional: slightly different hover color if needed */
+}
+
+/* Old container styles commented out - now using new layout
+.container {
+  max-width: 580px;
+  margin: 0 auto;
+  padding: 1rem 1.5rem;
+}
+
+section {
+  padding: 2.5rem 0;
+  border-bottom: 1px solid var(--gray-light);
+}
+
+section:last-child {
+  border-bottom: none;
+}
+*/
+
+/* Utility class for blue text - to be removed or not used */
+.text-blue {
+  color: var(--link-color) !important; /* Override to link color if still used */
+} 

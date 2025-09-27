@@ -1,0 +1,30 @@
+---
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="container">
+  <p>&copy; {currentYear} Justin Chow. All rights reserved.</p>
+  <p>
+    Built with <a
+      href="https://astro.build/"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="text-blue">Astro</a
+    >.
+  </p>
+</footer>
+
+<style>
+  footer {
+    text-align: center;
+    padding: 2rem 0;
+    font-size: 0.9rem;
+    color: var(--gray-dark);
+    border-top: 1px solid var(--gray-light);
+    margin-top: 2rem;
+  }
+  footer p {
+    margin: 0.25rem 0;
+  }
+</style>
+
